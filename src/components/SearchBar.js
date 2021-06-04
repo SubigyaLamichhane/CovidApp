@@ -29,7 +29,7 @@ class SearchBar extends React.Component {
                     <div className="flex-grow">
                         <form onSubmit = {this.onFormSubmit} className = "">
                             <div className="">
-                                 <input autocomplete="off" style={{height:'40px'}} className="pl-5 border-2 focus:outline-none focus:border-custom-blue focus:ring border-custom-border rounded-3xl w-full" id = "name" placeholder="Search.." type="text" value = {this.state.term}
+                                 <input autoComplete="off" style={{height:'40px'}} className="pl-5 border-2 focus:outline-none focus:border-custom-blue focus:ring border-custom-border rounded-3xl w-full" id = "name" placeholder="Search.." type="text" value = {this.state.term}
                                 onChange = {this.firstCharacterUpperCase }/>
                             </div>   
                         </form>

@@ -20,6 +20,7 @@ const DisplayCountryData = ({searchTerm}) => {
                 };
 
                 axios.request(options).then(function (response) {
+                    console.log(response.data[0]);
                     setRes(response.data[0]);
                     setGot(true);  
                 }).catch(function (error) {
@@ -39,7 +40,7 @@ const DisplayCountryData = ({searchTerm}) => {
             <div className = "ui container">
                 <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
                     <div className="content items-center mr-auto ml-auto">
-                        <div className="header text-center text-8xl mb-12 mt-32">{res.country}</div>
+                        <div className="header text-center text-8xl mb-12 mt-32">{res.country+' '}<img alt={`${res.country}'s flag`} className="inline" src={`https://www.countryflags.io/${res.code}/flat/64.png`}></img></div>
                         <div className="description text-4xl">
                             <p>Confirmed: <span className="text-custom-yellow">{res.confirmed}</span></p>
                             <p>Deaths: <span className="text-custom-red">{res.deaths}</span></p>
