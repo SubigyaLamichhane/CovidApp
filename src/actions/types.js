@@ -1,0 +1,2 @@
+export const SET_SEARCH_TERM = 'SET_SEARCH_TERM';
+export const FETCH_COVID_DATA = 'FETCH_COVID_DATA'
