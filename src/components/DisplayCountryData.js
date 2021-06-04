@@ -20,7 +20,6 @@ const DisplayCountryData = ({searchTerm}) => {
                 };
 
                 axios.request(options).then(function (response) {
-                    console.log(response.data[0]);
                     setRes(response.data[0]);
                     setGot(true);  
                 }).catch(function (error) {
@@ -35,7 +34,17 @@ const DisplayCountryData = ({searchTerm}) => {
     if(!got){
         return <div className="ui active centered inline loader"></div>
     }
-    if(got){
+    if(res.country === 'Not Found'){
+        jsx = (
+            <div className = "ui container">
+                <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
+                    <div className="content items-center mr-auto ml-auto">
+                        <div className="header text-center text-8xl mb-12 mt-32">{res.country}</div>
+                    </div>
+                </div>
+            </div>
+        );
+    } else {
         jsx = (
             <div className = "ui container">
                 <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
@@ -50,17 +59,8 @@ const DisplayCountryData = ({searchTerm}) => {
                 </div>
             </div>
         );
-    }else{
-        jsx = (
-            <div className="ui container">
-                <div style={{ marginBottom: '15px' }} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
-                    <div className="content items-center mr-auto ml-auto">
-                        <div className="header text-center text-8xl mb-12 mt-32">Not Found</div>
-                    </div>
-                </div>
-            </div>
-        );
     }
+        
     return jsx;
 }
 

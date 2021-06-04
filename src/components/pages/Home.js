@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import SearchBar from '../SearchBar';
 import DisplayCountryData from '../DisplayCountryData';
 import DisplayWorldData from '../DisplayWorldData';
+import ErrorBoundary from '../ErrorBoundry';
 
 class HomePage extends React.Component {
     DisplayData = () => {
         if(this.props.searchTerm.length===0){
             return <DisplayWorldData />
         } else {
-            return <DisplayCountryData searchTerm={this.props.searchTerm}/>
+            return (<ErrorBoundary>
+                    <DisplayCountryData searchTerm={this.props.searchTerm}/>
+                </ErrorBoundary>
+            );
         }
     }
     render(){

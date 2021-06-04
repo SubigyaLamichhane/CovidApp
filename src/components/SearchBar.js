@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { search } from '../actions';
+import { search, errorStatusChange } from '../actions';
 
 class SearchBar extends React.Component {
     state = { term: '' }
@@ -17,6 +17,7 @@ class SearchBar extends React.Component {
     };
 
     onFormSubmit = (event) => {
+        errorStatusChange(false);
         event.preventDefault();
         this.props.search(this.state.term);
     }
@@ -43,4 +44,5 @@ class SearchBar extends React.Component {
     }
 }
 
-export default connect(null, {search})(SearchBar);
+
+export default connect(null, {search, errorStatusChange})(SearchBar);
