@@ -12,8 +12,8 @@ class HomePage extends React.Component {
             return <DisplayWorldData />
         } else {
             return (<ErrorBoundary>
-                    <DisplayCountryData searchTerm={this.props.searchTerm}/>
-                </ErrorBoundary>
+                <DisplayCountryData/>
+            </ErrorBoundary>       
             );
         }
     }

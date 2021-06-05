@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 
 const putCommas = (x) => {
     x = x.toString();
@@ -10,7 +11,7 @@ const putCommas = (x) => {
 }
 
 const DisplayCountryData = ({searchTerm}) => {
-    const [res, setRes] = useState({});
+    const [res, setRes] = useState({country: 'Not Found'});
     const [got, setGot] = useState(false);
     let jsx = <div></div>;
     useEffect(
@@ -27,7 +28,6 @@ const DisplayCountryData = ({searchTerm}) => {
                     'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
                 }
                 };
-
                 axios.request(options).then(function (response) {
                     setRes(response.data[0]);
                     setGot(true);  
@@ -43,17 +43,18 @@ const DisplayCountryData = ({searchTerm}) => {
     if(!got){
         return <div className="ui active centered inline loader"></div>
     }
-    if(res.country === 'Not Found'){
-        jsx = (
-            <div className = "ui container">
-                <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
-                    <div className="content items-center mr-auto ml-auto">
-                        <div className="header text-center text-8xl mb-12 mt-32">{res.country}</div>
-                    </div>
-                </div>
-            </div>
-        );
-    } else {
+    // if(res.country === 'Not Found'){
+    //     jsx = (
+    //         <div className = "ui container">
+    //             <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
+    //                 <div className="content items-center mr-auto ml-auto">
+    //                     <div className="header text-center text-8xl mb-12 mt-32">{res.country}</div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     );
+    // } else 
+    if(res.country!=='Not Found'){
         jsx = (
             <div className = "ui container">
                 <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
@@ -68,9 +69,23 @@ const DisplayCountryData = ({searchTerm}) => {
                 </div>
             </div>
         );
+    } else{
+        jsx = (
+            <div className = "ui container">
+                <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
+                    <div className="content items-center mr-auto ml-auto">
+                        <div className="header text-center text-8xl mb-12 mt-32">{res.country}</div>
+                   </div>
+                </div>
+            </div>
+        );
     }
         
     return jsx;
 }
 
-export default DisplayCountryData;
+const mapStateToProps = (state) => {
+    return { searchTerm: state.searchTerm };
+}
+
+export default connect(mapStateToProps)(DisplayCountryData);
