@@ -7,6 +7,7 @@ import PreventionsPage from './pages/Preventions';
 import DisplayCountryPage from './pages/DiaplayCountryPage';
 // import ErrorBoundary from './ErrorBoundry';
 import history from '../history';
+import NotFound from './NotFound';
 
 // const ErrorBoudriedDisplayCountryPage = <ErrorBoundary><DisplayCountryPage/></ErrorBoundary>
 
@@ -21,6 +22,7 @@ const App = () =>{
                         <Route path="/country/:searchTerm" component={DisplayCountryPage}/>
                         <Route path="/symptoms" exact component={SymptomsPage}/>
                         <Route path="/preventions" exact component={PreventionsPage}/>
+                        <Route component={NotFound}/>
                     </Switch>
                 </div>
             </Router>

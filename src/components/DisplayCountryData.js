@@ -27,8 +27,6 @@ const DisplayCountryData = ({searchTerm}) => {
                 url: 'https://covid-19-data.p.rapidapi.com/country',
                 params: {name: searchTerm.toLowerCase()},
                 headers: {
-                    // 'x-rapidapi-key': 'b8051a7856msh8c1b7e60d94a110p19734bjsne6759f9a7242',
-                    // 'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
                     "x-rapidapi-key": "6d748d7ba2msh1161ff63d1da89bp15490ejsn6803ea0b9d2a",
 	                "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
                 }
@@ -64,7 +62,7 @@ const DisplayCountryData = ({searchTerm}) => {
             <div className = "ui container">
                 <div style={{marginBottom: '15px'}} className="border-2 border-custom-border rounded-3xl h-100 mt-16 mb-20 flex justify-center">
                     <div className="content items-center mr-auto ml-auto">
-                        <div className="header text-center text-8xl mb-12 mt-32">{res.country+' '}<img alt={`${res.country}'s flag`} className="inline" src={`https://www.countryflags.io/${res.code}/flat/64.png`}></img></div>
+                        <div className="header text-center text-8xl mb-12 mt-32">{res.country+' '}<img alt={`${res.country}'s flag`} className="inline h-2" src={`https://www.countryflags.io/${res.code}/flat/64.png`}></img></div>
                         <div className="description text-4xl">
                             <p>Confirmed: <span className="text-custom-yellow">{putCommas(res.confirmed)}</span></p>
                             <p>Deaths: <span className="text-custom-red">{putCommas(res.deaths)}</span></p>

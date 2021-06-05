@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { fetchCovidData } from '../actions/index';
 
-const splitAt = index => x => [x.slice(0, index), x.slice(index)]
-
 const putCommas = (x) => {
     x = x.toString();
     let b;
@@ -40,7 +38,7 @@ const DisplayWorldData = () => {
         []
     );
     if(res===null){
-        return <div className="ui active centered inline loader"></div>
+        return <div className="ui active centered inline loader"></div>;
     }
     return (
         <div className = "ui container">
