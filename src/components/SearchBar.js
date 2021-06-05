@@ -27,7 +27,7 @@ class SearchBar extends React.Component {
             <div className = "ui container">
                 <div className="md:flex items-center justify-center">
                     <div className="flex mt-8 flex-grow">
-                        <div className="text-4xl mr-8">Covid App</div>
+                        <div className="text-4xl mr-8"><button className="focus:outline-none" onClick={()=>window.location.reload()}>Covid App</button></div>
                         <div className="flex-grow">
                             <form onSubmit = {this.onFormSubmit} className = "">
                                 <div className="">

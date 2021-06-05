@@ -3,6 +3,17 @@ import { connect } from 'react-redux';
 
 import { fetchCovidData } from '../actions/index';
 
+const splitAt = index => x => [x.slice(0, index), x.slice(index)]
+
+const putCommas = (x) => {
+    x = x.toString();
+    let b;
+    if(x.length>3){
+        b = [x.slice(0,x.length-3),x.slice(x.length-3)];
+    }
+    return b[0].replace(/\B(?=(\d{2})+(?!\d))/g, ",")+','+b[1];
+}
+
 const DisplayWorldData = () => {
     const [res, setRes] = useState(null);
     useEffect(
@@ -20,6 +31,7 @@ const DisplayWorldData = () => {
                 };
 
                 axios.request(options).then(function (response) {
+                    console.log(response.data[0]);
                     setRes(response.data[0]);
                 }).catch(function (error) {
                     console.error(error);
@@ -37,9 +49,9 @@ const DisplayWorldData = () => {
                 <div className="content items-center mr-auto ml-auto">
                     <div className="header text-center text-8xl mb-12 mt-32">World</div>
                     <div className="description text-4xl">
-                        <p>Confirmed: <span className="text-custom-yellow">{res.confirmed}</span></p>
-                        <p>Deaths: <span className="text-custom-red">{res.deaths}</span></p>
-                        <p>Recovered: <span className="text-custom-green">{res.recovered}</span></p>
+                        <p>Confirmed: <span className="text-custom-yellow">{putCommas(res.confirmed)}</span></p>
+                        <p>Deaths: <span className="text-custom-red">{putCommas(res.deaths)}</span></p>
+                        <p>Recovered: <span className="text-custom-green">{putCommas(res.recovered)}</span></p>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
+const putCommas = (x) => {
+    x = x.toString();
+    let b;
+    if(x.length>3){
+        b = [x.slice(0,x.length-3),x.slice(x.length-3)];
+    }
+    return b[0].replace(/\B(?=(\d{2})+(?!\d))/g, ",")+','+b[1];
+}
+
 const DisplayCountryData = ({searchTerm}) => {
     const [res, setRes] = useState({});
     const [got, setGot] = useState(false);
@@ -51,9 +60,9 @@ const DisplayCountryData = ({searchTerm}) => {
                     <div className="content items-center mr-auto ml-auto">
                         <div className="header text-center text-8xl mb-12 mt-32">{res.country+' '}<img alt={`${res.country}'s flag`} className="inline" src={`https://www.countryflags.io/${res.code}/flat/64.png`}></img></div>
                         <div className="description text-4xl">
-                            <p>Confirmed: <span className="text-custom-yellow">{res.confirmed}</span></p>
-                            <p>Deaths: <span className="text-custom-red">{res.deaths}</span></p>
-                            <p>Recovered: <span className="text-custom-green">{res.recovered}</span></p>
+                            <p>Confirmed: <span className="text-custom-yellow">{putCommas(res.confirmed)}</span></p>
+                            <p>Deaths: <span className="text-custom-red">{putCommas(res.deaths)}</span></p>
+                            <p>Recovered: <span className="text-custom-green">{putCommas(res.recovered)}</span></p>
                         </div>
                     </div>
                 </div>
