@@ -25,8 +25,10 @@ const DisplayWorldData = () => {
                 method: 'GET',
                 url: 'https://covid-19-data.p.rapidapi.com/totals',
                 headers: {
-                    'x-rapidapi-key': 'b8051a7856msh8c1b7e60d94a110p19734bjsne6759f9a7242',
-                    'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
+                    // 'x-rapidapi-key': 'b8051a7856msh8c1b7e60d94a110p19734bjsne6759f9a7242',
+                    // 'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
+                    "x-rapidapi-key": "6d748d7ba2msh1161ff63d1da89bp15490ejsn6803ea0b9d2a",
+	                "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
                 }
                 };
 

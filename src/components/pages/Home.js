@@ -5,16 +5,18 @@ import SearchBar from '../SearchBar';
 import DisplayCountryData from '../DisplayCountryData';
 import DisplayWorldData from '../DisplayWorldData';
 import ErrorBoundary from '../ErrorBoundry';
+import history from '../../history';
 
 class HomePage extends React.Component {
     DisplayData = () => {
         if(this.props.searchTerm.length===0){
             return <DisplayWorldData />
         } else {
-            return (<ErrorBoundary>
-                <DisplayCountryData/>
-            </ErrorBoundary>       
-            );
+            // return (<ErrorBoundary>
+            //     <DisplayCountryData searchTerm={this.props.searchTerm}/>
+            // </ErrorBoundary>       
+            // );
+            history.push(`/country/${this.props.searchTerm}`);
         }
     }
     render(){

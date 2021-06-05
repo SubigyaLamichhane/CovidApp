@@ -6,8 +6,11 @@ const putCommas = (x) => {
     let b;
     if(x.length>3){
         b = [x.slice(0,x.length-3),x.slice(x.length-3)];
+        return b[0].replace(/\B(?=(\d{2})+(?!\d))/g, ",")+','+b[1];
+    } else{
+        return x;
     }
-    return b[0].replace(/\B(?=(\d{2})+(?!\d))/g, ",")+','+b[1];
+    
 }
 
 const DisplayCountryData = ({searchTerm}) => {
@@ -24,8 +27,10 @@ const DisplayCountryData = ({searchTerm}) => {
                 url: 'https://covid-19-data.p.rapidapi.com/country',
                 params: {name: searchTerm.toLowerCase()},
                 headers: {
-                    'x-rapidapi-key': 'b8051a7856msh8c1b7e60d94a110p19734bjsne6759f9a7242',
-                    'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
+                    // 'x-rapidapi-key': 'b8051a7856msh8c1b7e60d94a110p19734bjsne6759f9a7242',
+                    // 'x-rapidapi-host': 'covid-19-data.p.rapidapi.com'
+                    "x-rapidapi-key": "6d748d7ba2msh1161ff63d1da89bp15490ejsn6803ea0b9d2a",
+	                "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
                 }
                 };
                 axios.request(options).then(function (response) {
@@ -84,8 +89,8 @@ const DisplayCountryData = ({searchTerm}) => {
     return jsx;
 }
 
-const mapStateToProps = (state) => {
-    return { searchTerm: state.searchTerm };
-}
+// const mapStateToProps = (state) => {
+//     return { searchTerm: state.searchTerm };
+// }
 
-export default connect(mapStateToProps)(DisplayCountryData);
+export default connect(null)(DisplayCountryData);

@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import { search, errorStatusChange } from '../actions';
+import history from '../history';
 
 class SearchBar extends React.Component {
     state = { term: '' }
@@ -16,10 +17,19 @@ class SearchBar extends React.Component {
         
     };
 
+    toHome = () => {
+        history.push('/home');
+    }
+
     onFormSubmit = (event) => {
         errorStatusChange(false);
         event.preventDefault();
         this.props.search(this.state.term);
+        if(this.state.term===''){
+           this.toHome();
+        }else{
+             history.push(`/country/${this.state.term}`);
+        }
     }
 
     render(){
@@ -27,7 +37,7 @@ class SearchBar extends React.Component {
             <div className = "ui container">
                 <div className="md:flex items-center justify-center">
                     <div className="flex mt-8 flex-grow">
-                        <div className="text-4xl mr-8"><button className="focus:outline-none" onClick={()=>window.location.reload()}>Covid App</button></div>
+                        <div className="text-4xl mr-8"><a href="/" className="focus:outline-none">Covid App</a></div>
                         <div className="flex-grow">
                             <form onSubmit = {this.onFormSubmit} className = "">
                                 <div className="">
@@ -51,4 +61,4 @@ class SearchBar extends React.Component {
 }
 
 
-export default connect(null, {search, errorStatusChange})(SearchBar);
+export default withRouter(connect(null, {search, errorStatusChange})(SearchBar));
